@@ -10,6 +10,15 @@ export const resolvers = {
             deleted: false
         })
         return articels
+      },
+      getArticel:  async (_,argument) => {
+        const {id} = argument;
+        const articels = await Articel.findOne({
+          _id: id,
+          deleted: false
+        })
+        
+        return articels
       }
     },
   };

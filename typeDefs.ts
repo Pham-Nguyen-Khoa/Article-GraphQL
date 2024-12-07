@@ -5,9 +5,11 @@ export const typeDefs = `
         avatar: String,
         description: String
     }
+    
     type Query {
       hello: String,
       getListArticels: [Articel]
+      getArticel(id: ID): Articel
     }
     
  `

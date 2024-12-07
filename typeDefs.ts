@@ -21,6 +21,7 @@ export const typeDefs = `
 
     type Mutation {
       createArticle(article: ArticelInput): Articel
+      deleteArticle(id: ID): String
     }
     
  `

@@ -27,6 +27,16 @@ export const resolvers = {
           const record = new Articel(article);
           await record.save();
           return record 
+      },
+      deleteArticle: async(_,args) => {
+        const {id} = args;
+        await Articel.updateOne({
+          _id: id
+        },{
+          deleted: true,
+          deletedAt: new Date()
+        })
+        return "Đã xóa!"
       }
     }
   };

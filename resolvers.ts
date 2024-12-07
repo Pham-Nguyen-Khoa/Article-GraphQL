@@ -37,6 +37,15 @@ export const resolvers = {
       return category;
     },
   },
+  Articel: {
+    category: async (article) => {
+      const categoryInfo = await Category.findOne({
+        _id: article.categoryId,
+        deleted: false
+      });
+      return categoryInfo
+    }
+  },
   Mutation: {
     createArticle: async (_, args) => {
       const { article } = args;

@@ -37,6 +37,19 @@ export const resolvers = {
           deletedAt: new Date()
         })
         return "Đã xóa!"
-      }
+      },
+      updateArticle: async (_,args) => {
+        const { id, article } = args;
+      
+        await  Articel.updateOne({
+          _id: id,
+          deleted: false
+        },article);
+        const record = await Articel.findOne({
+          _id: id,
+          deleted: false
+        })
+        return record 
+    }
     }
   };

@@ -1,6 +1,14 @@
 export const typeDefs = `
-    type Query {
-      hello: String
+    type Articel {
+        id: ID,
+        title: String, 
+        avatar: String,
+        description: String
     }
-  `;
+    type Query {
+      hello: String,
+      getListArticels: [Articel]
+    }
+    
+ `
 

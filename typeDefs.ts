@@ -11,6 +11,17 @@ export const typeDefs = `
       getListArticels: [Articel]
       getArticel(id: ID): Articel
     }
+
+    input ArticelInput {
+      title: String, 
+      avatar: String, 
+      description: String, 
+
+    }
+
+    type Mutation {
+      createArticle(article: ArticelInput): Articel
+    }
     
  `
 

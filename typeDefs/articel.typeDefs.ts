@@ -9,7 +9,7 @@ export const typeDefsArticel = `
 
 
     type Query {
-      getListArticels(sortKey: String, sortValue: String , currentPage: Int , limitPage: Int): [Articel]
+      getListArticels(sortKey: String, sortValue: String , currentPage: Int , limitPage: Int filterKey: String, filterValue: String): [Articel]
       getArticel(id: ID): Articel
 
     }

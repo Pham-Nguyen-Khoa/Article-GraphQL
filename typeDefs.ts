@@ -25,6 +25,7 @@ export const typeDefs = `
       title: String, 
       avatar: String, 
       description: String, 
+      categoryId: String
 
     }
 

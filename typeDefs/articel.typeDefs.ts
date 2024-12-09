@@ -9,7 +9,7 @@ export const typeDefsArticel = `
 
 
     type Query {
-      getListArticels: [Articel]
+      getListArticels(sortKey: String, sortValue: String): [Articel]
       getArticel(id: ID): Articel
 
     }

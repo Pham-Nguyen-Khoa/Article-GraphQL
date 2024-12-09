@@ -4,10 +4,18 @@ import Category from "../models/categories.model";
 export const resolverArticle = {
   Query: {
     getListArticels: async (_, args) => {
-      const { sortKey, sortValue, currentPage, limitPage, filterKey, filterValue } = args;
+      const {
+        sortKey,
+        sortValue,
+        currentPage,
+        limitPage,
+        filterKey,
+        filterValue,
+        keyword
+      } = args;
       let find = {
-        deleted: false
-      }
+        deleted: false,
+      };
       // Sort
       const sort = {};
       if (sortKey && sortValue) {
@@ -15,24 +23,29 @@ export const resolverArticle = {
       }
       // End Sort
 
-
       //Pagination
- 
-        const skip = (currentPage - 1) * limitPage;
-      
-      
 
-      // End Pagination 
+      const skip = (currentPage - 1) * limitPage;
 
+      // End Pagination
 
-      // filter
-      if(filterKey && filterValue){
-        find[filterKey] = filterValue
+      // Filter
+      if (filterKey && filterValue) {
+        find[filterKey] = filterValue;
       }
+      // End Filter
 
-      // filter
+      // Search 
+      if(keyword){
+        const keywordRegex = new RegExp(keyword,"i");
+        find["title"] =  keywordRegex
+      }
+      // End Search
 
-      const articels = await Articel.find(find).sort(sort).limit(limitPage).skip(skip);
+      const articels = await Articel.find(find)
+        .sort(sort)
+        .limit(limitPage)
+        .skip(skip);
       return articels;
     },
     getArticel: async (_, argument) => {

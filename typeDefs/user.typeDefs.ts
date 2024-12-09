@@ -8,6 +8,11 @@ export const typeDefsUser = `
         message: String
     }
 
+    type Query {
+        getUser(id: ID): User
+    }
+
+
     input RegisterUserInput {
       fullName: String, 
       email: String, 
@@ -26,6 +31,7 @@ export const typeDefsUser = `
     type Mutation {
       loginUser(user: LoginUserInput): User
       registerUser(user: RegisterUserInput): User
+
     }
     
  `;

@@ -5,7 +5,7 @@ import { ApolloServer } from '@apollo/server';
 import { expressMiddleware } from '@apollo/server/express4';
 import {typeDefs} from "./typeDefs/index.typeDefs"
 
-import { resolvers } from "./resolvers";
+import { resolvers } from "./resolvers/index.resolver";
 
 const startServer = async () => {
   dotenv.config();

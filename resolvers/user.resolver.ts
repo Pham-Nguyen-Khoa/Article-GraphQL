@@ -1,0 +1,40 @@
+
+import md5 from "md5"
+import User from "../models/user.model";
+import * as generateHelper   from "../helpers/generateHelper"
+export const resolverUser= {
+
+  Mutation: {
+    registerUser: async (_,args) => {
+        const {user} = args;
+
+        const emailExisted = await User.findOne({
+            deleted: false,
+            email: user.email
+        })
+        if(emailExisted){
+            return {
+                code: 400, 
+                message: "Email đã tồn tại!"
+            }
+        }else {
+            user.password = md5(user.password);
+            user.token = generateHelper.generateRandomString(30);   
+            const newUser = new User(user);
+            const data = await newUser.save();
+            return {
+                code: 200, 
+                message: "Tạo tài khoản thành công",
+                id: data.id,
+                email: data.email,
+                token: data.token,
+                fullName: data.fullName
+            }
+        }
+
+
+
+        console.log(user)
+    }
+  }
+};

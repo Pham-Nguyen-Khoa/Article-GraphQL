@@ -31,10 +31,37 @@ export const resolverUser= {
                 fullName: data.fullName
             }
         }
+    },
+    loginUser: async (_,args) => {
+        const {email, password} = args.user;
 
+        const userExisted = await User.findOne({
+            email: email,
+            deleted: false
+        })
 
-
-        console.log(user)
+        if(!userExisted){
+            return {
+                code: 400,
+                message: "Email không tồn tại!"
+            }
+        }else{
+            if(md5(password) != userExisted.password){
+                return {
+                    code: 400,
+                    message: "Sai mật khẩu!"
+                }
+            }else{
+                return {
+                    code: 200,
+                    message: "Đăng nhập thành công!",
+                    token: userExisted.token,
+                    email: userExisted.email,
+                    fullName: userExisted.fullName
+                }
+            }
+        }
     }
+
   }
 };

@@ -15,7 +15,16 @@ export const typeDefsUser = `
 
     }
 
+    
+    input LoginUserInput {
+      fullName: String, 
+      email: String, 
+      password: String, 
+
+    }
+
     type Mutation {
+      loginUser(user: LoginUserInput): User
       registerUser(user: RegisterUserInput): User
     }
     

@@ -50,6 +50,7 @@ const dotenv_1 = __importDefault(require("dotenv"));
 const database = __importStar(require("./config/database"));
 const server_1 = require("@apollo/server");
 const express4_1 = require("@apollo/server/express4");
+const default_1 = require("@apollo/server/plugin/landingPage/default");
 const index_typeDefs_1 = require("./typeDefs/index.typeDefs");
 const index_resolver_1 = require("./resolvers/index.resolver");
 const authen_middleware_1 = require("./middleware/authen.middleware");
@@ -63,7 +64,8 @@ const startServer = () => __awaiter(void 0, void 0, void 0, function* () {
     const apolloServer = new server_1.ApolloServer({
         typeDefs: index_typeDefs_1.typeDefs,
         resolvers: index_resolver_1.resolvers,
-        introspection: true
+        introspection: true,
+        plugins: [(0, default_1.ApolloServerPluginLandingPageLocalDefault)()]
     });
     yield apolloServer.start();
     app.use('/graphql', (0, express4_1.expressMiddleware)(apolloServer, {

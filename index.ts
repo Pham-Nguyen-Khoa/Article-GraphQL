@@ -3,6 +3,7 @@ import dotenv from "dotenv";
 import * as database from "./config/database"
 import { ApolloServer } from '@apollo/server';
 import { expressMiddleware } from '@apollo/server/express4';
+import { ApolloServerPluginLandingPageLocalDefault } from '@apollo/server/plugin/landingPage/default';
 import {typeDefs} from "./typeDefs/index.typeDefs"
 
 import { resolvers } from "./resolvers/index.resolver";
@@ -26,7 +27,8 @@ const startServer = async () => {
   const apolloServer = new ApolloServer({
     typeDefs: typeDefs,
     resolvers,
-    introspection: true
+    introspection: true,
+    plugins: [ApolloServerPluginLandingPageLocalDefault()]
     // context: ({req}) => {
     //   return {
     //     ...req

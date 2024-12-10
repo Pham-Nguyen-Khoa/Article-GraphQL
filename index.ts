@@ -1,6 +1,6 @@
 import express, { Express } from "express";
 import dotenv from "dotenv";
-import * as database from "../Artical/config/database";
+import * as database from "./config/database"
 import { ApolloServer } from '@apollo/server';
 import { expressMiddleware } from '@apollo/server/express4';
 import {typeDefs} from "./typeDefs/index.typeDefs"

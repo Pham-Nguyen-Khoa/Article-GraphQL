@@ -47,7 +47,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = __importDefault(require("express"));
 const dotenv_1 = __importDefault(require("dotenv"));
-const database = __importStar(require("../Artical/config/database"));
+const database = __importStar(require("./config/database"));
 const server_1 = require("@apollo/server");
 const express4_1 = require("@apollo/server/express4");
 const index_typeDefs_1 = require("./typeDefs/index.typeDefs");

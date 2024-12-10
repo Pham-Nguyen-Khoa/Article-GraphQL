@@ -1,4 +1,7 @@
-export const typeDefsUser = `
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.typeDefsUser = void 0;
+exports.typeDefsUser = `
     type User {
         id: ID,
         fullName: String, 

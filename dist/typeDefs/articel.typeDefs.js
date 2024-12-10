@@ -1,0 +1,34 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.typeDefsArticel = void 0;
+exports.typeDefsArticel = `
+    type Articel {
+        id: ID,
+        title: String, 
+        avatar: String,
+        description: String,
+        category: Category 
+    }
+
+
+    type Query {
+      getListArticels(sortKey: String, sortValue: String , currentPage: Int , limitPage: Int filterKey: String, filterValue: String , keyword: String): [Articel]
+      getArticel(id: ID): Articel
+
+    }
+
+    input ArticelInput {
+      title: String, 
+      avatar: String, 
+      description: String, 
+      categoryId: String
+
+    }   
+
+    type Mutation {
+      createArticle(article: ArticelInput): Articel
+      deleteArticle(id: ID): String
+      updateArticle(id: ID,article: ArticelInput): Articel
+    }
+    
+ `;

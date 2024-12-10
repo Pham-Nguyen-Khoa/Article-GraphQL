@@ -6,6 +6,7 @@ import { expressMiddleware } from '@apollo/server/express4';
 import {typeDefs} from "./typeDefs/index.typeDefs"
 
 import { resolvers } from "./resolvers/index.resolver";
+import { requireAuth } from "./middleware/authen.middleware";
 
 const startServer = async () => {
   dotenv.config();
@@ -20,14 +21,28 @@ const startServer = async () => {
 
   // GraphQL
 
+  app.use('/graphql',requireAuth)
+
   const apolloServer = new ApolloServer({
     typeDefs: typeDefs,
     resolvers,
+    introspection: true
+    // context: ({req}) => {
+    //   return {
+    //     ...req
+    //   } 
+    // }
   });
 
   await apolloServer.start();
 
-  app.use('/graphql', expressMiddleware(apolloServer));
+  app.use('/graphql', expressMiddleware(apolloServer,{
+    context: async ({ req }) => {
+      return {
+        ...req
+      };
+    },
+  }));
 
   app.listen(port, () => {
     console.log(`App listening on port ${port}`);

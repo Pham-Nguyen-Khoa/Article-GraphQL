@@ -4,10 +4,9 @@ import User from "../models/user.model";
 import * as generateHelper   from "../helpers/generateHelper"
 export const resolverUser= {
     Query: {
-        getUser:  async (_,args) => {
-            const {id} = args;
+        getUser:  async (_,args,context) => {
             const infoUser = await User.findOne({
-                _id: id,
+                token: context["user"].token,
                 deleted: false
               });
               
